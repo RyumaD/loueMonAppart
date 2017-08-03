@@ -33,6 +33,11 @@
         Flight::redirect('/accueil');
     });
 
+    /**
+     * Alfonso: Très bon job.
+     * propre et clean. Tu mérites double ration de pain au chocolat!
+     */
+
     Flight::route('POST /registerService', function(){
         unset($_SESSION['erreur']);
         unset($_SESSION['message']);
