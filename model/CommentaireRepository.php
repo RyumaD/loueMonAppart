@@ -14,7 +14,7 @@ class CommentaireRepository{
         $id = $userRepository->getIdUser();
         $object = $this->connexion->prepare('SELECT * FROM commentairelocation WHERE user_id=:user_id');
         $object->execute(array(
-            "user_id"=>$id[0]['id']
+            "user_id"=>$id['id']
         ));
         $users = $object->fetchAll(PDO::FETCH_ASSOC);
         return $users;
@@ -30,7 +30,7 @@ class CommentaireRepository{
         $userRepository = $bdd->getUserRepository();
         $locationRepository = $bdd->getLocationRepository();
         $id = $userRepository->getIdUser();
-        $pdo->execute(array("user_id"=>$id[0]['id'],
+        $pdo->execute(array("user_id"=>$id['id'],
                             "location_id"=>$id2,
                             "comment"=>$comment
         ));                    

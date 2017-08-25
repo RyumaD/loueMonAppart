@@ -1,15 +1,4 @@
 <?= $header ?>
-<?php 
-
-if(!empty($_SESSION['message']))
-{
-    echo '<h3>'.$_SESSION['message'].'</h3>';
-} 
-if(!empty($_SESSION['erreur']))
-{
-    var_dump($_SESSION['erreur']);
-} 
-?>
 <h2>Login</h2>
 <p>
     Connectez-vous !

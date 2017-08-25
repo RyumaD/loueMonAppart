@@ -18,13 +18,21 @@ class UserRepository{
         }
         return $user;
     }
+    public function getUserById($id){
+        $object = $this->connexion->prepare('SELECT username FROM user WHERE id=:id');
+        $object->execute(array(
+            'id'=>$id
+        ));
+        $user = $object->fetch(PDO::FETCH_ASSOC);
+        return $user;
+    }
     public function getIdUser(){
         $object = $this->connexion->prepare('SELECT id FROM user WHERE username=:username AND password=:password');
         $object->execute(array(
             'password'=>$_SESSION['user']['password'],
             'username'=>$_SESSION['user']['username']
         ));
-        $user = $object->fetchAll(PDO::FETCH_ASSOC);
+        $user = $object->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
 

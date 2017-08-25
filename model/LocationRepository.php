@@ -25,7 +25,7 @@ class LocationRepository{
         $id = $userRepository->getIdUser();
         $object = $this->connexion->prepare('SELECT * FROM location WHERE user_id=:user_id');
         $object->execute(array(
-            "user_id"=>$id[0]['id']
+            "user_id"=>$id['id']
         ));
         $users = $object->fetchAll(PDO::FETCH_ASSOC);
         return $users;
@@ -47,7 +47,7 @@ class LocationRepository{
                             "titre"=>$reg->getParams()['titre'],
                             "description"=> $reg->getParams()['description'],
                             "lieu"=>$reg->getParams()['lieu'],
-                            "user_id"=>$id[0]['id']
+                            "user_id"=>$id['id']
         ));                    
         return $pdo->rowCount();
     }

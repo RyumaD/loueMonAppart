@@ -16,6 +16,7 @@
     });
 
     Flight::route('/accueil', function(){
+        unset($_SESSION['message']);
         Flight::render('accueil');
     });
 
@@ -26,9 +27,21 @@
     Flight::route('/myLocation', function(){
         Flight::render('myLocation');
     });
+
+    Flight::route('/messagerie', function(){
+        Flight::render('messagerie');
+    });
     
     Flight::route('/location/@id', function($id){
         Flight::render('location', array("id"=>$id));
+    });
+
+    Flight::route('/message/@id', function($id){
+        Flight::render('message', array("id"=>$id));
+    });
+
+    Flight::route('/favoris', function(){
+        Flight::render('myFavoris');
     });
 
     Flight::route('POST /loginService', function(){
@@ -116,5 +129,33 @@
         $service->updCommentLocation($_POST['comment'],$_POST['id'],$_POST['date'],$_POST['new']);
         Flight::redirect('/myLocation');
     });
+
+    Flight::route('POST /messageService', function(){
+        unset($_SESSION['erreur']);
+        $service = new addMessageService();
+        $service->addMessageToUser();
+        Flight::redirect('/messagerie');
+    });
+
+    Flight::route('POST /favorisService', function(){
+        unset($_SESSION['erreur']);
+        $service = new FavorisService();
+        $service->addFavorisForLater();
+        Flight::redirect('/favoris');
+    });
+
+    Flight::route('POST /supprFavorisService', function(){
+        unset($_SESSION['erreur']);
+        $service = new supprFavorisService();
+        $service->supprFavorisForNow($_POST['id']);
+        Flight::redirect('/favoris');
+    });
+
+    Flight::route('/deconnexion', function(){
+        session_destroy();
+        Flight::redirect('/login');
+    });
+    
+
 
     Flight::start();
