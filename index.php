@@ -8,7 +8,8 @@
     Flight::render('footer', array('tests' => 'World'), 'footer');
 
     Flight::route('/', function(){
-        Flight::render('login');
+        unset($_SESSION['erreur']);
+        Flight::render('accueil');
     });
 
     Flight::route('/login', function(){
@@ -16,32 +17,44 @@
     });
 
     Flight::route('/accueil', function(){
+        unset($_SESSION['erreur']);
         unset($_SESSION['message']);
         Flight::render('accueil');
     });
 
     Flight::route('/addLocation', function(){
+        unset($_SESSION['erreur']);
         Flight::render('addLocation');
     });
 
     Flight::route('/myLocation', function(){
+        unset($_SESSION['erreur']);
         Flight::render('myLocation');
     });
 
     Flight::route('/messagerie', function(){
+        unset($_SESSION['erreur']);
         Flight::render('messagerie');
     });
     
     Flight::route('/location/@id', function($id){
+        unset($_SESSION['erreur']);
         Flight::render('location', array("id"=>$id));
     });
 
     Flight::route('/message/@id', function($id){
+        unset($_SESSION['erreur']);
         Flight::render('message', array("id"=>$id));
     });
 
     Flight::route('/favoris', function(){
+        unset($_SESSION['erreur']);
         Flight::render('myFavoris');
+    });
+
+    Flight::route('/reservation', function(){
+        unset($_SESSION['erreur']);
+        Flight::render('myReserve');
     });
 
     Flight::route('POST /loginService', function(){
@@ -151,7 +164,22 @@
         Flight::redirect('/favoris');
     });
 
+    Flight::route('POST /reserveService', function(){
+        unset($_SESSION['erreur']);
+        $service = new reserveService();
+        $service->addReserveNow();
+        Flight::redirect('/reservation');
+    });
+
+    Flight::route('POST /supprReserveService', function(){
+        unset($_SESSION['erreur']);
+        $service = new supprReserveService();
+        $service->supprReserveNow();
+        Flight::redirect('/reservation');
+    });
+
     Flight::route('/deconnexion', function(){
+        unset($_SESSION['erreur']);
         session_destroy();
         Flight::redirect('/login');
     });

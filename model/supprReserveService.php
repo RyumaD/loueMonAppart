@@ -1,13 +1,13 @@
 <?php
 
-class reserveService{
+class supprReserveService{
     
-    public function addReserveNow(){
+    public function supprReserveNow(){
         $id = $_POST['id'];
         $start = $_POST['debut'];
         $end = $_POST['fin'];
         $bdd = new BddManager();
         $reserveRepository = $bdd->getReserveRepository();
-        $reserveRepository->addReserve($id, $start, $end);
+        $reserveRepository->supprReserve($id, $start, $end);
     }
 }

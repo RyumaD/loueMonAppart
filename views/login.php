@@ -1,43 +1,56 @@
 <?= $header ?>
-<h2>Login</h2>
-<p>
-    Connectez-vous !
-</p>
-<form action="loginService" method="post">
-    <div class="form-group">
-        <label>Username</label>
-        <input class="form-control" type="text" name="username" value=""/>
+<?php
+$flag = false;
+if(!empty($_SESSION['user']))
+{
+    $flag = true;
+}
+if($flag == false){?>
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Register</label>
+            <div class="login-form">
+                <div class="hr"></div>
+                <form action="loginService" method="post" class="sign-in-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input" name="username">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password" name="password">
+                    </div>
+                    <div class="group middleflexbutt">
+                        <button type="submit" class="button"> <span>Connexion</span></button>
+                    </div>
+                </form>
+                <form action="registerService" method="post" class="sign-up-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input" name="username">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password" name="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Repeat Password</label>
+                        <input id="pass" type="password" class="input" data-type="password" name="confpword">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Email Address</label>
+                        <input id="pass" type="text" class="input" name="email">
+                    </div>
+                    <div class="group middleflexbutt">
+                        <button type="submit" class="button"> <span>Inscription</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input class="form-control" type="password" name="password" value="" />
-    </div>
-
-    <button class="btn btn-primary" type="submit">Login</button>
-
-</form>
-
-<h2>Register</h2>
-<p>
-    Vous n'êtes pas encore inscrit? Inscrivez-vous maintenant c'est gratuit !
-</p>
-<form action="registerService" method="post">
-    <div class="form-groups">
-        <label>Username</label>
-        <input class="form-control" type="text" name="username" value="" />
-    </div>
-    <div class="form-groups">
-        <label>password</label>
-        <input class="form-control" type="text" name="password" value="" />
-    </div>
-    <div class="form-groups">
-        <label>Confirm password</label>
-        <input class="form-control" type="text" name="confpword" value="" />
-    </div>
-    <div class="form-groups">
-        <label>email</label>
-        <input class="form-control" type="text" name="email" value="" />
-    </div>
-    <button class="btn btn-primary" type="submit">S'enregistrer</button>
-</form>
+<?}
+else{
+    echo "<h2>Hey tu est deja connecté</h2>";
+}?>
 <?= $footer ?>

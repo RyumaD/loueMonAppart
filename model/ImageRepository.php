@@ -15,7 +15,7 @@ class ImageRepository{
         $locationRepository = $bdd->getLocationRepository();
         $id = $userRepository->getIdUser();
         $pdo->execute(array("image"=>$file,
-                            "user_id"=>$id[0]['id'],
+                            "user_id"=>$id['id'],
                             "location_id"=>$id2
         ));                    
         return $pdo->rowCount();

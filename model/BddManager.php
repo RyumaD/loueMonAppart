@@ -7,6 +7,7 @@ class BddManager{
     private $commentaireRepository;
     private $messagerieRepository;
     private $favorisRepository;
+    private $reserveRepository;
 
     public function setUserRepository($userRepository){
         $this->UserRepository = $userRepository;
@@ -44,6 +45,12 @@ class BddManager{
     public function getFavorisRepository(){
         return $this->FavorisRepository;
     }
+    public function setReserveRepository($reserveRepository){
+        $this->ReserveRepository = $reserveRepository;
+    }
+    public function getReserveRepository(){
+        return $this->ReserveRepository;
+    }
 
     public function __construct(){
         $this->connexion = Connexion::getConnexion();
@@ -53,6 +60,7 @@ class BddManager{
         $this->setCommentaireRepository(new CommentaireRepository($this->connexion));
         $this->setMessagerieRepository(new MessagerieRepository($this->connexion));
         $this->setFavorisRepository(new FavorisRepository($this->connexion));
+        $this->setReserveRepository(new ReserveRepository($this->connexion));
     }
 
     
