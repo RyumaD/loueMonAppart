@@ -26,7 +26,7 @@ if($flag == true){?>
         <a href="../reservation" class="navis">Reservation</a>
         <a href="../deconnexion" class="navis">Exit</a>
     </nav>
-    <div id="addloc">
+    <div class="addloc">
         <h1>CREEZ VOTRE ANNONCE DES MAINTENANT!</h1>
         <form action="addLocation" method="POST">
             <input type="submit" value="Creez">
