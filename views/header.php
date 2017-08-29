@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="../reset.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <?php 
@@ -19,30 +17,33 @@
         $flag = true;
     }
 if($flag == true){?>
-    <h1>Creez votre annonce de location dès maintenant!</h1>
-    <form action="addLocation" method="POST">
-        <input type="submit" value="Creez">
-    </form>
+    
     <nav>
-        <a href="login" class="navis">Inscrire/Connexion</a>
-        <a href="myLocation" class="navis">Mes Locations</a>
         <a href="accueil" class="navis">Accueil</a>
+        <a href="myLocation" class="navis">Mes Locations</a>
         <a href="messagerie" class="navis">Messagerie</a>
         <a href="favoris" class="navis">Favoris</a>
         <a href="reservation" class="navis">Reservation</a>
         <a href="deconnexion" class="navis">Exit</a>
     </nav>
+    <div class="addloc">
+        <h1>CREEZ VOTRE ANNONCE DES MAINTENANT!</h1>
+        <form action="addLocation" method="POST">
+            <input type="submit" value="Creez">
+        </form>
+    </div>
 <?}
 else{?>
     <nav>
         <a href="accueil" class="navis">Accueil</a>
         <a href="login" class="navis">Inscription/Connexion</a>
     </nav>
+    <h1 class="addloc">Connectez vous dès maintenant!</h1>
 <?}
 
 if(!empty($_SESSION['message']))
 {
-    echo '<h3>'.$_SESSION['message'].'</h3>';
+    echo '<h3 class="reussite">'.$_SESSION['message'].'</h3>';
 } 
 if(!empty($_SESSION['erreur']))
 {

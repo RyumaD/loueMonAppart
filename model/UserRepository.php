@@ -29,7 +29,7 @@ class UserRepository{
     public function getIdUser(){
         $object = $this->connexion->prepare('SELECT id FROM user WHERE username=:username AND password=:password');
         $object->execute(array(
-            'password'=>$_SESSION['user']['password'],
+            'password'=>sha1($_SESSION['user']['password']),
             'username'=>$_SESSION['user']['username']
         ));
         $user = $object->fetch(PDO::FETCH_ASSOC);
@@ -41,7 +41,7 @@ class UserRepository{
         $query = 'SELECT id,username FROM user WHERE username=:username AND password=:password';
         $object = $this->connexion->prepare($query);
         $object->execute(array(
-            'password'=>$log->getParams()['password'],
+            'password'=>sha1($log->getParams()['password']),
             'username'=>$log->getParams()['username']
         ));
         $user = $object->fetchAll(PDO::FETCH_ASSOC);
@@ -90,8 +90,8 @@ class UserRepository{
         $query = "INSERT INTO user SET username=:username, email=:email, password=:password";
         $pdo = $this->connexion->prepare($query);
         $pdo->execute(array("username"=>$reg->getParams()['username'],
-                            "email"=> $reg->getParams()['email'],
-                            "password"=>$reg->getParams()['password']
+                            "email"=>$reg->getParams()['email'],
+                            "password"=> sha1($reg->getParams()['password'])
         ));                    
         return $pdo->rowCount();
     }

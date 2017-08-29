@@ -10,8 +10,8 @@
         
 	
         $image = $imageRepository->bddShowImageofLocation($loca["id"]);
-        if(count($image) > 0) {
-            echo "<div id='slideshow'><a href='location/".$loca['id']."'><p>".$loca["titre"]."</p><p>".$loca["prix"]."</p><p>".$loca["description"]."</p></a>
+        if(count($image) > 2) {
+            echo "<div id='slideshow'><a href='location/".$loca['id']."'><br><p>Titre : ".$loca["titre"]."</p><br><p>Prix : ".$loca["prix"]." par jour</p><br><p> Description : ".$loca["description"]."</p></a>
                     <ul id='sContent'> ";
             foreach ($image as $images) {
                 $img = $images["image"];

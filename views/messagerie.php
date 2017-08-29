@@ -21,12 +21,12 @@
             $i++;
             if($flag == true){
                 echo "<a href='message/".$messages['desti_id']."'>";
-                var_dump($other);
+                echo "<p class='msg'>".$other['username']."</p>";
                 echo '</a><br><br>';
             }
             else{
                 echo "<a href='message/".$messages['exped_id']."'>";
-                var_dump($other);
+                echo "<p class='msg'>".$other['username']."</p>";
                 echo '</a><br><br>';
             }
         }

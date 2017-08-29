@@ -4,7 +4,7 @@
     require 'Autoloader.php';
 
 
-    Flight::render('header', array('heading' => 'Hello'), 'header');
+    Flight::render('header', array('heading' => 'LoueMonAppart'), 'header');
     Flight::render('footer', array('tests' => 'World'), 'footer');
 
     Flight::route('/', function(){
@@ -145,7 +145,7 @@
 
     Flight::route('POST /messageService', function(){
         unset($_SESSION['erreur']);
-        $service = new addMessageService();
+        $service = new messageService();
         $service->addMessageToUser();
         Flight::redirect('/messagerie');
     });
